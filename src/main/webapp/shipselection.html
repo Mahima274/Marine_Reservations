@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marine Ticket Booking</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f2f8ff;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+.user-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background-color: #003366;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.dropdown-menu a {
+  color: #003366;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f2f8ff;
+}
+   
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .message-bar {
+      background-color: #fffae6;
+      color: #663300;
+      padding: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    .message-bar span {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee 25s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .port-cards {
+      padding: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-evenly;
+    }
+    .ship-card {
+      background-color: #e6f0ff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 280px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .ship-card img {
+      max-width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .ship-card h2 {
+      margin: 10px 0;
+      font-size: 1.2em;
+      color: #003366;
+    }
+    .ship-card p {
+      font-size: 0.95em;
+      color: #333;
+    }
+    .ship-card button {
+      background-color: #003366;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .ship-card button:hover {
+      background-color: #005fa3;
+    }
+    footer {
+      background-color: #003366;
+      color: white;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .footer-links {
+      margin-top: 15px;
+      text-align: center;
+    }
+    #popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popup-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+    .popup-box button {
+      padding: 8px 16px;
+      margin: 10px 8px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .popup-box button:first-child {
+      background: #ccc;
+    }
+    .popup-box button:last-child {
+      background: #003366;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+    <header>
+  <h2>Marine Booking</h2>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+
+    <select class="language-selector">
+      <option>English</option>
+      <option>Telugu</option>
+      <option>Hindi</option>
+    </select>
+
+    <div class="user-dropdown">
+      <button class="dropdown-toggle" onclick="toggleDropdown()">Hi, User ▾</button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <a href="#">Update Password</a>
+        <a href="#">Logout</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+  <div class="message-bar">
+    <span>Advisory: Ferry services between Chatham and Dundus Point are revised. Visit the latest advisory for updates. Updated: 29 June 2025 18:35 IST</span>
+  </div>
+
+  <section class="port-cards">
+  <div class="ship-card">
+    <img src="https://bdc2020.o0bc.com/wp-content/uploads/2021/10/DJI_0009-Enhanced-6171a519597ee-scaled.jpg" alt="Ship 1">
+    <h2>Ocean Explorer</h2>
+    <p>Embark on a luxury journey across the Atlantic.</p>
+    <button onclick="openPopup('Visakhapatnam', 'Mumbai', 'ship1.html')">Book Now</button>
+  </div>
+
+  <div class="ship-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Seven_Seas_Voyager_%28ship%2C_2003%29%2C_S%C3%A8te_01.jpg/1200px-Seven_Seas_Voyager_%28ship%2C_2003%29%2C_S%C3%A8te_01.jpg" alt="Ship 2">
+    <h2>Sea Voyager</h2>
+    <p>Sail through the Mediterranean in style.</p>
+    <button onclick="openPopup('Chennai', 'Kolkata', 'ship2.html')">Book Now</button>
+  </div>
+
+  <div class="ship-card">
+    <img src="https://assets.tourhero.com/ov8jsxtg34ug3d9p6bi01kd7ijaf" alt="Ship 3">
+    <h2>Island Hopper</h2>
+    <p>Discover hidden gems of the Pacific islands.</p>
+    <button onclick="openPopup('Cochin', 'Kandla', 'ship3.html')">Book Now</button>
+  </div>
+
+  <div class="ship-card">
+    <img src="https://www.ship-technology.com/wp-content/uploads/sites/8/2023/08/Featured-Image-MSC-World-AmericaUS.jpg" alt="Ship 4">
+    <h2>Voyage Master</h2>
+    <p>Set sail on a majestic journey across the seas.</p>
+    <button onclick="openPopup('Mumbai', 'Visakhapatnam', 'ship4.html')">Book Now</button>
+  </div>
+
+  <div class="ship-card">
+    <img src="https://cruiseindustrynews.com/wp-content/uploads/2024/07/starbreeze_windstar.jpg" alt="Ship 5">
+    <h2>Atlantic Breeze</h2>
+    <p>Feel the ocean breeze on a spectacular Atlantic crossing.</p>
+    <button onclick="openPopup('Mormugao', 'Cochin', 'ship5.html')">Book Now</button>
+  </div>
+</section>
+
+<!-- Popup -->
+<div id="popup">
+  <div class="popup-box">
+    <h4>Booking Confirmation</h4>
+    <p id="popup-text">Do you want to proceed to book this journey?</p>
+    <button onclick="closePopup()">Cancel</button>
+    <button onclick="proceedBooking()">Proceed</button>
+  </div>
+</div>
+
+<footer>
+  <p style="text-align: center;">&copy; 2025 Marine.com All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a> |
+    <a href="#">Terms</a> |
+    <a href="#">Support</a>
+  </div>
+</footer>
+
+<script>
+  let selectedSource = "";
+  let selectedDestination = "";
+  let selectedShipPage = "";
+
+  function openPopup(source, destination, shipPage) {
+    selectedSource = source;
+    selectedDestination = destination;
+    selectedShipPage = shipPage;
+    document.getElementById("popup-text").innerText = 
+      `Do you want to book a trip from ${source} to ${destination}?`;
+    document.getElementById("popup").style.display = "flex";
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+
+  function proceedBooking() {
+    const url = `${selectedShipPage}?source=${encodeURIComponent(selectedSource)}&destination=${encodeURIComponent(selectedDestination)}`;
+    window.location.href = url;
+  }
+
+  function toggleDropdown() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  }
+
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-toggle')) {
+      const dropdowns = document.getElementsByClassName("dropdown-menu");
+      for (let i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].style.display = "none";
+      }
+    }
+  };
+</script>

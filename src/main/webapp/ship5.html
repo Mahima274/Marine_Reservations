@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marine Ticket Booking</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f2f8ff;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .user-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-toggle {
+      background-color: #003366;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      font-weight: 500;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+      z-index: 1000;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .dropdown-menu a {
+      color: #003366;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown-menu a:hover {
+      background-color: #f2f8ff;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .ship-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px;
+      gap: 40px;
+    }
+    .ship-details {
+      max-width: 50%;
+    }
+    .ship-details h2 {
+      font-size: 2em;
+      color: #003366;
+      margin-bottom: 15px;
+    }
+    .ship-details p {
+      font-size: 1em;
+      color: #333;
+      line-height: 1.6;
+    }
+    .book-now-button {
+      margin-top: 25px;
+      background-color: #003366;
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .book-now-button:hover {
+      background-color: #005fa3;
+    }
+    .ship-info img {
+      max-width: 40%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    #popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popup-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+    .popup-box button {
+      padding: 8px 16px;
+      margin: 10px 8px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .cancel-btn {
+      background-color: #ccc;
+    }
+    .proceed-btn {
+      background-color: #003366;
+      color: white;
+    }
+    footer {
+      margin-top: auto;
+      background-color: #003366;
+      color: white;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .footer-links {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Marine Booking</h2>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <select class="language-selector">
+        <option>English</option>
+        <option>Telugu</option>
+        <option>Hindi</option>
+      </select>
+      <div class="user-dropdown">
+        <button class="dropdown-toggle" onclick="toggleDropdown()">Hi, User ▾</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="#">Update Password</a>
+          <a href="#">Logout</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <div class="ship-info">
+        <div class="ship-details">
+            <h2>Unwind on the Atlantic Breeze</h2>
+            <p>Step aboard the Atlantic Breeze and experience an unforgettable cruise. Relax, dine, and enjoy entertainment as you cross the stunning Atlantic waters.</p>
+            <button class="book-now-button" onclick="window.location.href='breezeselection.html'">Book Now</button>
+        </div>
+        <img src="https://ttgasia.2017.ttgasia.com/wp-content/uploads/sites/2/2025/04/Star-Voyager-640.jpg">
+    </div>
+
+  <div id="popup">
+    <div class="popup-box">
+      <h3>Booking Confirmation</h3>
+      <p id="popup-text">Do you want to proceed to book this journey?</p>
+      <button class="cancel-btn" onclick="closePopup()">Cancel</button>
+      <button class="proceed-btn" onclick="proceedBooking()">Proceed</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Marine.com All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms</a> |
+      <a href="#">Support</a>
+    </div>
+  </footer>
+
+  <script>
+    let source = "";
+    let destination = "";
+
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      source = params.get('source') || "Unknown";
+      destination = params.get('destination') || "Unknown";
+    }
+
+    function openPopup() {
+      document.getElementById("popup-text").innerText =
+        `Do you want to book a trip from ${source} to ${destination}?`;
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    function proceedBooking() {
+      const bookingPage = `oceanvoyagerbooking.html?source=${encodeURIComponent(source)}&destination=${encodeURIComponent(destination)}`;
+      window.location.href = bookingPage;
+    }
+
+    function toggleDropdown() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+
+    window.onload = getQueryParams;
+  </script>
+</body>
+</html>

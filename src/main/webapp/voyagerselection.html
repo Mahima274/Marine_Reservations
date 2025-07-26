@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marine Reservation System - Room Selection</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f2f8ff;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      flex: 1;
+    }
+    h2 {
+      color: #003366;
+      font-size: 2em;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .room-selection-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      max-width: 1200px;
+      width: 100%;
+    }
+    .room-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .room-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .room-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .room-card h3 {
+      margin: 15px 0 10px;
+      font-size: 1.3em;
+      color: #003366;
+    }
+    .room-card p {
+      font-size: 0.95em;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .book-now-button {
+      background-color: #003366;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .book-now-button:hover {
+      background-color: #005fa3;
+    }
+    footer {
+      background-color: #003366;
+      color: white;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .footer-links {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Marine Reservation</h2>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Select Your Room</h2>
+    <div class="room-selection-container">
+      <div class="room-card">
+        <img src="https://www.shutterstock.com/image-photo/bowl-fruit-sits-on-table-600nw-2401267499.jpg" alt="Luxury Suite">
+        <h3>Luxury Suite</h3>
+        <p>Enjoy the ultimate luxury experience with panoramic ocean views, a private balcony, and exclusive services.</p>
+        <button class="book-now-button" onclick="selectRoom('Luxury Suite')">Book Now</button>
+      </div>
+      <div class="room-card">
+        <img src="https://thumbs.dreamstime.com/b/view-twin-bed-cruise-cabin-overlooking-ocean-clear-day-tranquility-highlighted-expansive-large-381251787.jpg" alt="Ocean View">
+        <h3>Ocean View</h3>
+        <p>Relax in your spacious room with a stunning view of the ocean, perfect for a peaceful getaway.</p>
+        <button class="book-now-button" onclick="selectRoom('Ocean View')">Book Now</button>
+      </div>
+      <div class="room-card">
+        <img src="https://d23n7ahjfnjotp.cloudfront.net/imgs/iphone/cabins/new/11/6axl.jpg" alt="Standard Cabin" />
+        <h3>Standard Cabin</h3>
+        <p>Comfortable and cozy, ideal for travelers who prefer a more affordable, yet relaxing accommodation.</p>
+        <button class="book-now-button" onclick="selectRoom('Standard Cabin')">Book Now</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Marine.com All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms</a> |
+      <a href="#">Support</a>
+    </div>
+  </footer>
+
+  <script>
+    function selectRoom(roomType) {
+      localStorage.setItem('selectedRoom', roomType);
+      window.location.href = 'payment.html';
+    }
+  </script>
+</body>
+</html>
+

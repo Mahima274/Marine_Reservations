@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ship Booking Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #f9f9f9;
+      padding: 10px;
+      border: 1px solid #ddd;
+      margin: 5px 0;
+      border-radius: 4px;
+    }
+
+    .cancel-btn {
+      background-color: #ff4444;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cancel-btn:hover {
+      background-color: #cc0000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Marine Booking Page</h1>
+    <form id="bookingForm">
+      <div class="form-group">
+        <label for="from">From:</label>
+        <select id="from" name="from" required>
+          <option value="">Select Port</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Kolkata">Kolkata</option>
+          <option value="Cochin">Cochin</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="to">To:</label>
+        <select id="to" name="to" required>
+          <option value="">Select Port</option>
+          <option value="Vizag">Vizag</option>
+          <option value="Tuticorin">Tuticorin</option>
+          <option value="Mangalore">Mangalore</option>
+          <option value="Paradip">Paradip</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="departureDate">Departure Date:</label>
+        <input type="date" id="departureDate" name="departureDate" required>
+      </div>
+      <div class="form-group">
+        <label for="returnDate">Return Date:</label>
+        <input type="date" id="returnDate" name="returnDate">
+      </div>
+      <div class="form-group">
+        <label for="adults">Adults:</label>
+        <input type="number" id="adults" name="adults" min="1" required>
+      </div>
+      <div class="form-group">
+        <label for="children">Children:</label>
+        <input type="number" id="children" name="children" min="0">
+      </div>
+      <button type="submit">Book Now</button>
+    </form>
+
+    <h2>Bookings</h2>
+    <ul id="bookingsList">
+      <!-- Bookings will appear here -->
+    </ul>
+  </div>
+
+  <script>
+    const form = document.getElementById('bookingForm');
+    const bookingsList = document.getElementById('bookingsList');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Get form values
+      const from = document.getElementById('from').value;
+      const to = document.getElementById('to').value;
+      const departureDate = document.getElementById('departureDate').value;
+      const returnDate = document.getElementById('returnDate').value || 'N/A';
+      const adults = document.getElementById('adults').value;
+      const children = document.getElementById('children').value || '0';
+
+      // Create a new list item for the booking
+      const booking = document.createElement('li');
+      booking.innerHTML = `
+        <p><strong>From:</strong> ${from}</p>
+        <p><strong>To:</strong> ${to}</p>
+        <p><strong>Departure Date:</strong> ${departureDate}</p>
+        <p><strong>Return Date:</strong> ${returnDate}</p>
+        <p><strong>Adults:</strong> ${adults}</p>
+        <p><strong>Children:</strong> ${children}</p>
+        <button class="cancel-btn">Cancel Booking</button>
+      `;
+
+      // Add cancel button functionality
+      const cancelButton = booking.querySelector('.cancel-btn');
+      cancelButton.addEventListener('click', function () {
+        bookingsList.removeChild(booking);
+      });
+
+      // Add the new booking to the list
+      bookingsList.appendChild(booking);
+
+      // Reset the form
+      form.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Download Ticket</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f2f8ff;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header, footer {
+      background-color: #003366;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .language-selector {
+      padding: 5px;
+      border-radius: 4px;
+      border: none;
+    }
+    .user-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 15px;
+      color: #003366;
+      text-decoration: none;
+    }
+    .dropdown-menu a:hover {
+      background: #f2f8ff;
+    }
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px;
+      width: 100%;
+      max-width: 600px;
+      margin: 40px auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity:0; transform: translateY(20px);}
+      to { opacity:1; transform: translateY(0);}
+    }
+    .header i {
+      font-size: 2rem;
+      color: #003366;
+      margin-bottom: 10px;
+    }
+    .header h2 {
+      margin:0;
+      color:#003366;
+    }
+    .header p {
+      color:#555;
+      margin-top:8px;
+    }
+    .icon {
+      font-size: 4rem;
+      color: #00b3c6;
+      margin: 30px 0;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0);}
+      40% { transform: translateY(-15px);}
+      60% { transform: translateY(-8px);}
+    }
+    .message {
+      background: #f1f7fa;
+      border: 1px dashed #d0e7ef;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      color: #003366;
+    }
+    .actions {
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding:12px 25px;
+      border-radius:6px;
+      font-weight:600;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition: all 0.3s ease;
+      cursor:pointer;
+      border:none;
+      font-size:1rem;
+    }
+    .btn-primary {
+      background:#003366;
+      color:#fff;
+    }
+    .btn-primary:hover {
+      background:#005fa3;
+    }
+    .btn-secondary {
+      background:#f1f7fa;
+      color:#003366;
+      border:1px solid #e0e0e0;
+    }
+    .btn-secondary:hover {
+      background:#e0f4f7;
+    }
+    footer {
+      margin-top: auto;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    @media (max-width:600px) {
+      .actions {
+        flex-direction:column;
+      }
+      .btn {
+        width:100%;
+        justify-content:center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Marine Booking</h2>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <select class="language-selector">
+        <option>English</option>
+        <option>Telugu</option>
+        <option>Hindi</option>
+      </select>
+      <div class="user-dropdown">
+        <button class="dropdown-toggle" onclick="toggleDropdown()">Hi, User ▾</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="#">Update Password</a>
+          <a href="#">Logout</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="header">
+      <i class="fas fa-ticket-alt"></i>
+      <h2>Download Your Ticket</h2>
+      <p>Save your ticket for easy access anytime</p>
+    </div>
+    <div class="icon">
+      <i class="fas fa-download"></i>
+    </div>
+    <div class="message">
+      <p>Your ticket is ready. Click below to download it to your device.</p>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="download-btn">
+        <i class="fas fa-file-download"></i> Download PDF
+      </button>
+      <a href="viewticket.html" class="btn btn-secondary">
+        <i class="fas fa-eye"></i> View Ticket
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Marine.com All rights reserved.
+  </footer>
+
+  <script>
+    function toggleDropdown() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const bookingData = JSON.parse(localStorage.getItem("bookingData"));
+      if (!bookingData) {
+        window.location.href = "payment.html";
+        return;
+      }
+
+      document.getElementById("download-btn").addEventListener("click", function(e) {
+        e.preventDefault();
+        const ticketData = {
+          reference: 'BK-' + Math.random().toString(36).substr(2, 8).toUpperCase(),
+          date: new Date(bookingData.travelDate).toLocaleDateString(),
+          passengers: bookingData.passengerCount,
+          amount: bookingData.totalCost
+        };
+        alert(`Ticket downloaded successfully!\nReference: ${ticketData.reference}`);
+        window.location.href = "paymentconfirmation.html";
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marine Ticket Booking</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f2f8ff;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .language-selector {
+      background-color: white;
+      color: #003366;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      color: black;
+      min-width: 140px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      border-radius: 4px;
+    }
+    .dropdown-content a {
+      padding: 10px;
+      display: block;
+      text-decoration: none;
+      color: #003366;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .dropdown-button {
+      background-color: white;
+      color: #003366;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .message-bar {
+      background-color: #fffae6;
+      color: #663300;
+      padding: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    .message-bar span {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee 25s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .section-info, .ticket-search-box, .port-cards, .tour-packages {
+      padding: 30px;
+      background-color: #fff;
+      margin-bottom: 20px;
+    }
+    .ticket-search-box select, .ticket-search-box input, .ticket-search-box button {
+      padding: 10px;
+      margin: 10px 10px 0 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .ticket-search-box button {
+      background-color: #003366;
+      color: white;
+      cursor: pointer;
+    }
+    .port-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+    }
+    .port-card {
+      background-color: #e6f0ff;
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1 1 30%;
+      min-width: 250px;
+      text-align: center;
+    }
+    .port-card img {
+      max-width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .tour-columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
+    }
+    .tour-column h4 {
+      margin-bottom: 10px;
+      color: #005fa3;
+    }
+    .tour-column ul {
+      list-style: square;
+      padding-left: 20px;
+      color: #333;
+    }
+    footer {
+  background-color: #003366;
+  color: white;
+  padding: 30px 20px;
+  font-size: 0.9rem;
+}
+
+.footer-logo-line {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+footer a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-links {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.footer-column {
+  flex: 1 1 250px;
+  margin: 10px 0;
+}
+
+.footer-column h4 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #ffcc00;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 6px;
+  color: #ddd;
+}
+
+.footer-column ul li:hover {
+  color: #fff;
+}
+
+.footer-column ul li a {
+  color: #ddd;
+  text-decoration: none;
+}
+
+.footer-column ul li a:hover {
+  color: white;
+}
+
+.social-icons img {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-columns {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+	
+.port-card button {
+  background-color: #003366;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.port-card button:hover {
+  background-color: #005fa3;
+}
+#popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .popup-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+    .popup-box button {
+      padding: 8px 15px;
+      margin: 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .popup-box button:first-child {
+      background-color: #ccc;
+    }
+    .popup-box button:last-child {
+      background-color: #003366;
+      color: white;
+    }
+    .bottom-ad-banner {
+  background-color: #ffeaa7;
+  color: #2d3436;
+  padding: 15px 20px;
+  text-align: center;
+  font-size: 1rem;
+  border-top: 2px solid #fdcb6e;
+  border-bottom: 2px solid #fdcb6e;
+}
+
+.bottom-ad-banner a {
+  color: #d63031;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.bottom-ad-banner a:hover {
+  text-decoration: underline;
+}
+/* Popup animation */
+.popup-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.popup-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+    
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Marine Booking</h2>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <select class="language-selector">
+        <option>English</option>
+        <option>Telugu</option>
+        <option>Hindi</option>
+      </select>
+      <div class="dropdown">
+        <div class="dropdown-button">Hi, User</div>
+        <div class="dropdown-content">
+          <a href="#">Update Password</a>
+          <a href="#">Logout</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="message-bar">
+    <span>Advisory: Ferry services between Chatham and Dundus Point are revised. Visit the latest advisory for updates. Updated: 29 June 2025 18:35 IST</span>
+  </div>
+
+  <section class="section-info">
+    <h3>About Shipping in India</h3>
+    <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+    <img src="https://www.ship-technology.com/wp-content/uploads/sites/8/2023/08/Featured-Image-MSC-World-AmericaUS.jpg" alt="Shipping in India" style="max-width: 400px; border-radius: 10px;">
+    <div style="flex: 1;">
+    <p>
+        India boasts one of the largest merchant shipping fleets among developing countries.
+        With 13 major ports and over 200 minor ports, marine travel and cargo transportation
+        is thriving like never before. Whether it is luxury coastal cruises, budget-friendly ferries,
+        or cargo liners, India is coastline offers it all.
+      </p>
+      <p>
+        The government is actively promoting **sustainable and digital marine services**, and our platform
+        aligns with that mission to make ticket booking effortless, secure, and transparent.
+      </p>
+    <p>Experience affordable, comfortable journeys across the country via government and private ferry operators.</p>
+    <p>
+    With rising demand for marine-based connectivity and green logistics, India is steadily turning its vast
+    coastline into a channel of opportunity — connecting cities, islands, and economies. Whether you're commuting,
+    exploring, or transporting goods, the sea is now more accessible than ever.
+  </p>
+
+  <p>
+    From the pristine waters of Lakshadweep to the buzzing docks of Mumbai, every voyage tells a story. And we’re here
+    to make yours smooth, scenic, and satisfying.
+  </p>
+
+</section>
+ 
+
+  <section class="ticket-search-box">
+  <h3>Check Ticket Availability</h3>
+  <form>
+    <select name="source">
+      <option disabled selected>Select Source</option>
+      <option>Kolkata Port</option>
+      <option>Paradip Port</option>
+      <option>Visakhapatnam Port</option>
+      <option>Chennai Port</option>
+      <option>Ennore Port (Kamarajar)</option>
+      <option>Tuticorin Port</option>
+      <option>Cochin Port</option>
+      <option>New Mangalore Port</option>
+      <option>Mormugao Port</option>
+      <option>Mumbai Port</option>
+      <option>Jawaharlal Nehru Port (Nhava Sheva)</option>
+      <option>Kandla Port</option>
+      <option>Port Blair</option>
+    </select>
+
+    <select name="destination">
+      <option disabled selected>Select Destination</option>
+      <option>Kolkata Port</option>
+      <option>Paradip Port</option>
+      <option>Visakhapatnam Port</option>
+      <option>Chennai Port</option>
+      <option>Ennore Port (Kamarajar)</option>
+      <option>Tuticorin Port</option>
+      <option>Cochin Port</option>
+      <option>New Mangalore Port</option>
+      <option>Mormugao Port</option>
+      <option>Mumbai Port</option>
+      <option>Jawaharlal Nehru Port (Nhava Sheva)</option>
+      <option>Kandla Port</option>
+      <option>Port Blair</option>
+    </select>
+
+    <button type="submit">Search</button>
+  </form>
+</section>
+
+
+  <section class="port-cards">
+    <div class="port-card">
+      <img src="https://vpt.shipping.gov.in/admin_assets/uploads/1714632535_cruise-21-min.JPG" alt="Visakhapatnam Port">
+      <h4>Visakhapatnam to Mumbai</h4>
+      <p>Travel between East and West coasts via top maritime routes.</p>
+      <button class="book-btn">Book Now</button>
+
+    </div>
+    <div class="port-card">
+      <img src="https://www.travelandtourworld.com/wp-content/uploads/2025/05/freepik__the-style-is-candid-ima-27-6-850x582.jpg" alt="Ship">
+      <h4>Chennai to Kolkata</h4>
+      <p>Return journey with luxury ship amenities available monthly.</p>
+      <button class="book-btn">Book Now</button>
+
+    </div>
+    <div class="port-card">
+      <img src="https://thumbs.dreamstime.com/b/cruise-ship-docked-sunset-majestic-harbor-breathtaking-golden-light-illuminates-water-creating-magical-358253115.jpg" alt="Harbor">
+      <h4>Cochin to Kandla</h4>
+      <p>Explore the Arabian Sea route with coastal scenery.</p>
+      <button class="book-btn">Book Now</button>
+
+    </div>
+	    </div>
+    <div class="port-card">
+      <img src="https://traveltradejournal.com/wp-content/uploads/2023/09/Cordelia-Cruises-1.jpg" alt="Ship">
+      <h4>Mumbai to Visakhapatnam</h4>
+      <p>Return journey with luxury ship amenities available monthly.</p>
+      <button class="book-btn">Book Now</button>
+
+    </div>
+	    </div>
+    <div class="port-card">
+      <img src="https://www.greatlakescruises.com/uploads/1/0/6/4/106440933/edited/glc-aqv-ocean-voyager-aerial.jpg " alt="Ship">
+      <h4>Mormugao Port to Visakhapatnam</h4>
+      <p>Return journey with luxury ship amenities available monthly.</p>
+      <button class="book-btn">Book Now</button>
+
+    </div>
+	<div class="port-card">
+      <img src="https://www.ship-technology.com/wp-content/uploads/sites/8/2023/08/Featured-Image-MSC-World-AmericaUS.jpg" alt="Ship 4">" alt="Ship">
+      <h4>Jawaharlal Nehru Port to Cochin</h4>
+      <p>Return journey with luxury ship amenities available monthly.</p>
+      <button class="book-btn">Book Now</button>
+
+    </div>
+    
+<section class="section-info" style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
+  <div style="flex: 1;">
+    <h3>What is Marine Reservation?</h3>
+    <p>Marine reservation is your digital gateway to booking seamless ferry, cruise, and sea travel experiences across India’s vast coastline. From majestic cruises across the Arabian Sea to short inter-island ferry rides in Andaman, our platform empowers citizens to explore the sea safely, affordably, and with confidence.</p>
+    <p>Built to align with India’s Digital Maritime Mission, the reservation system integrates public-private marine operators, digital tickets, real-time schedules, and upcoming smart cruise terminals.</p>
+  </div>
+</section>
+
+<section class="section-info" style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
+  <div style="flex: 1;">
+    <h3>What Do We Know About Marine Voyager?</h3>
+    <ul>
+      <li>🌊 Launched in 2025 as India's first digitally-managed luxury cruiser.</li>
+      <li>🛳️ Hosts 12 decks, 600+ cabins, and panoramic sea-view lounges.</li>
+      <li>🍽️ 9 restaurants onboard including South Indian, Mughlai, and Continental cuisines.</li>
+      <li>🎭 Night theatre, karaoke, spa, open-deck cinema, and kids’ play zones.</li>
+      <li>⚓ Fully solar-assisted with hybrid diesel-electric propulsion systems.</li>
+    </ul>
+  </div>
+  <img src="https://thumbs.dreamstime.com/b/cruise-ship-docked-sunset-majestic-harbor-breathtaking-golden-light-illuminates-water-creating-magical-358253115.jpg" alt="Marine Voyager" style="max-width: 400px; border-radius: 10px;">
+</section>
+
+<section class="section-info">
+  <h3>Fast Facts & Facilities</h3>
+  <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 250px;">
+      <h4>🚢 Fast Facts</h4>
+      <ul>
+        <li>Max Speed: 45 knots</li>
+        <li>Length: 290 meters</li>
+        <li>Guests: Up to 1,800</li>
+        <li>Built: Kochi Shipyard, 2024</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section-info">
+  <h3>Entertainment & Wellness</h3>
+  <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+    <div style="flex: 1;">
+      <ul>
+        <li>🎭 Live Shows & Cultural Evenings</li>
+        <li>🎮 Game Zone & Virtual Reality</li>
+        <li>📽️ Outdoor Movie Nights</li>
+        <li>🧘 Yoga & Meditation Deck</li>
+        <li>💆 Spa, Sauna, & Ayurvedic Therapy</li>
+      </ul>
+    </div>
+    <img src="https://assets.tourhero.com/ov8jsxtg34ug3d9p6bi01kd7ijaf" alt="Cruise Show" style="max-width: 400px; border-radius: 8px;">
+  </div>
+</section>
+
+
+<!-- Popup Modal -->
+<div id="popup">
+  <div class="popup-box">
+    <p>Confirm your booking?</p>
+    <button onclick="closePopup()">Cancel</button>
+    <button onclick="proceedBooking()">Proceed</button>
+  </div>
+</div>
+
+<!-- Advertisement -->
+<div class="bottom-ad-banner">
+  <p><strong>Explore Incredible India:</strong> Avail 20% discount on all coastal cruises booked before 15th July 2025. <a href="#">Book Now</a></p>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-columns">
+    <div class="footer-column">
+      <h4>Pilgrimage Packages</h4>
+      <ul>
+        <li>Tirupati Balaji Temple</li>
+        <li>Virupaksha Temple</li>
+        <li>Kalaram Mandir</li>
+        <li>Vrindavan Tour Package</li>
+        <li>Meenakshi Amman Temple</li>
+        <li>Sabarimala</li>
+        <li>Ram Janmabhoomi</li>
+        <li>Mankameshwar Mandir</li>
+        <li>Shree Somnath Temple</li>
+        <li>Shirdi Package</li>
+        <li>Amarnath Yatra</li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Top Packages</h4>
+      <ul>
+        <li>Lakshadweep Tours</li>
+        <li>Karnataka Tours</li>
+        <li>France Tours</li>
+        <li>Spain Tours</li>
+        <li>Germany Tours</li>
+        <li>UAE Tours</li>
+        <li>Family Holidays</li>
+        <li>Udaipur Tourism</li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+      <h4 style="margin-top: 20px;">Follow Us</h4>
+      <ul class="social-icons">
+        <li><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" /> Facebook</a></li>
+        <li><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" /> Twitter</a></li>
+        <li><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Google+" /> Google+</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-logo-line"><strong>Marine-logo</strong></div>
+    <p>&copy; 2025 Marine.com All rights reserved.</p>
+    <p>
+      The content and images used on this site are copyright protected and copyrights
+      vest with the respective owners. Usage of this content is intended to promote the works.
+      Unauthorized use is prohibited and punishable by law.
+    </p>
+  </div>
+</footer>
+
+<!-- JS Logic -->
+<script>
+  let redirectTarget = "";
+
+  function openPopup(targetUrl) {
+    redirectTarget = targetUrl;
+    const popup = document.getElementById("popup");
+    popup.style.display = "flex";
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+    redirectTarget = "";
+  }
+
+  function proceedBooking() {
+    window.location.href = redirectTarget;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".book-btn");
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        openPopup("shipselection.html");
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

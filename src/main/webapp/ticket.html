@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #87cefa, #4682b4);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .ticket-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px 50px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .ticket-box h1 {
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        .ticket-box p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .ticket-box .highlight {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        .ticket-box button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #ffcc00;
+            color: #003366;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .ticket-box button:hover {
+            background-color: #ff9900;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket-box" id="ticket">
+        <h1>Travel Ticket</h1>
+        <p>Suite Type: <span id="suiteType" class="highlight"></span></p>
+        <p>Start Date: <span id="startDate" class="highlight"></span></p>
+        <p>Number of Adults: <span id="numAdults" class="highlight"></span></p>
+        <p>Number of Children: <span id="numChildren" class="highlight"></span></p>
+        <p>Total Cost: $<span id="totalCost" class="highlight"></span></p>
+        <button id="download-ticket">Download Ticket</button>
+    </div>
+    <script>
+        // Retrieve data from localStorage
+        const suiteType = localStorage.getItem('suiteType');
+        const numAdults = localStorage.getItem('numAdults') || 0;
+        const numChildren = localStorage.getItem('numChildren') || 0;
+        const startDate = localStorage.getItem('startDate') || 'Not selected';
+        const totalCost = localStorage.getItem('totalCost') || '0';
+
+        if (!suiteType) {
+            alert('Suite type is missing. Please complete your booking.');
+            window.location.href = 'roombooking.html';
+        } else {
+            document.getElementById('suiteType').textContent = suiteType;
+            document.getElementById('startDate').textContent = startDate;
+            document.getElementById('numAdults').textContent = numAdults;
+            document.getElementById('numChildren').textContent = numChildren;
+            document.getElementById('totalCost').textContent = totalCost;
+        }
+
+        // Download ticket as PDF
+        document.getElementById('download-ticket').addEventListener('click', function () {
+            const ticketBox = document.getElementById('ticket');
+            const ticketContent = `
+                Travel Ticket
+                Suite Type: ${suiteType}
+                Start Date: ${startDate}
+                Number of Adults: ${numAdults}
+                Number of Children: ${numChildren}
+                Total Cost: $${totalCost}
+            `;
+
+            const blob = new Blob([ticketContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'TravelTicket.txt';
+            link.click();
+        });
+    </script>
+</body>
+</html>

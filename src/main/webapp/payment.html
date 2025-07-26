@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Complete Your Booking - Marine Booking</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f2f8ff;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+header, footer {
+  background-color: #003366;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+.language-selector {
+  padding: 5px;
+  border-radius: 4px;
+  border: none;
+}
+.user-dropdown {
+  position: relative;
+}
+.dropdown-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: #003366;
+  text-decoration: none;
+}
+.dropdown-menu a:hover {
+  background: #f2f8ff;
+}
+.container {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 700px;
+  width: 100%;
+  margin: 40px auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.header h2 {
+  color: #003366;
+  margin: 0;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: #333;
+}
+input, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+input:focus, select:focus {
+  border-color: #003366;
+  box-shadow: 0 0 0 3px rgba(0,51,102,0.1);
+  outline: none;
+}
+.passenger-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+  gap: 15px;
+}
+.passenger-card {
+  background: #f2f8ff;
+  border: 1px solid #dde6f0;
+  border-radius: 8px;
+  padding: 15px;
+}
+.passenger-number {
+  background: #003366;
+  color: #fff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+.total-summary {
+  background: #e6eff9;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  margin: 20px 0;
+}
+.total-cost {
+  font-size: 1.5rem;
+  color: #003366;
+  font-weight: 600;
+}
+button {
+  background-color: #003366;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+button:hover {
+  background-color: #005fa3;
+  transform: translateY(-2px);
+}
+h3 {
+  color: #003366;
+  margin: 0 0 10px 0;
+}
+footer {
+  margin-top: auto;
+  text-align: center;
+  font-size: 0.9rem;
+}
+</style>
+</head>
+<body>
+<header>
+  <h2>Marine Booking</h2>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <select class="language-selector">
+      <option>English</option>
+      <option>Telugu</option>
+      <option>Hindi</option>
+    </select>
+    <div class="user-dropdown">
+      <button class="dropdown-toggle" onclick="toggleDropdown()">Hi, User ▾</button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <a href="#">Update Password</a>
+        <a href="#">Logout</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="header">
+    <h2>Complete Your Booking</h2>
+  </div>
+  <form id="payment-form">
+    <div class="form-group">
+      <label for="passenger-count">Number of Passengers (Max 6):</label>
+      <input type="number" id="passenger-count" min="1" max="6" value="1" required />
+    </div>
+    <div id="passenger-fields"></div>
+    <div class="form-group">
+      <label for="start-date">Travel Date:</label>
+      <input type="date" id="start-date" required />
+    </div>
+    <div class="form-group">
+      <label for="payment-method">Payment Method:</label>
+      <select id="payment-method" required>
+        <option value="" disabled selected>Select payment option</option>
+        <option value="creditcard">Credit/Debit Card</option>
+        <option value="phonepe">PhonePe</option>
+        <option value="gpay">Google Pay</option>
+        <option value="paytm">Paytm</option>
+      </select>
+    </div>
+    <div class="total-summary">
+      <div>Your Total Amount:</div>
+      <div class="total-cost"><span id="total-cost">$0.00</span></div>
+      <div id="cost-breakdown"></div>
+    </div>
+    <button type="submit">Confirm & Pay</button>
+  </form>
+</div>
+
+<footer>
+  &copy; 2025 Marine.com All rights reserved.
+</footer>
+
+<script>
+function toggleDropdown() {
+  const menu = document.getElementById("dropdownMenu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+const pricing = {
+  adult: { minAge: 18, price: 300 },
+  teen: { minAge: 10, maxAge: 17, price: 270 },
+  child: { maxAge: 9, price: 0 }
+};
+let passengerCount = 1;
+const form = document.getElementById("payment-form");
+const countInput = document.getElementById("passenger-count");
+const fieldsDiv = document.getElementById("passenger-fields");
+const totalEl = document.getElementById("total-cost");
+const breakdownEl = document.getElementById("cost-breakdown");
+
+function init() {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+  document.getElementById("start-date").min = tomorrow.toISOString().split("T")[0];
+  document.getElementById("start-date").value = tomorrow.toISOString().split("T")[0];
+  genFields();
+  countInput.addEventListener("input", handleCount);
+  form.addEventListener("input", calcCost);
+  form.addEventListener("submit", handleSubmit);
+}
+
+function handleCount() {
+  const n = parseInt(countInput.value) || 1;
+  passengerCount = n < 1 ? 1 : n > 6 ? 6 : n;
+  countInput.value = passengerCount;
+  genFields();
+}
+
+function genFields() {
+  fieldsDiv.innerHTML = passengerCount > 1 ? '<h3>Passenger Details</h3><div class="passenger-grid"></div>' : '';
+  const grid = fieldsDiv.querySelector('.passenger-grid');
+  for (let i = 1; i <= passengerCount; i++) {
+    const div = document.createElement("div");
+    div.className = "passenger-card";
+    div.innerHTML = `
+      <div class="passenger-number">${i}</div>
+      <div class="form-group"><label>Name:</label><input type="text" id="name${i}" required/></div>
+      <div class="form-group"><label>Age:</label><input type="number" id="age${i}" min="0" max="120" required/></div>`;
+    if (grid) grid.appendChild(div);
+    else fieldsDiv.appendChild(div);
+  }
+  calcCost();
+}
+
+function calcCost() {
+  let total = 0, a = 0, t = 0, c = 0;
+  for (let i = 1; i <= passengerCount; i++) {
+    const age = parseInt(document.getElementById(`age${i}`).value) || 0;
+    if (age >= pricing.adult.minAge) { total += pricing.adult.price; a++; }
+    else if (age >= pricing.teen.minAge) { total += pricing.teen.price; t++; }
+    else { c++; }
+  }
+  totalEl.textContent = `$${total}`;
+  breakdownEl.innerHTML = `${a} Adult • ${t} Teen • ${c} Child${c > 0 ? ' <span style="color:#003366;">(Children free)</span>' : ''}`;
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const method = document.getElementById("payment-method").value;
+  if (!method) { alert("Select payment method"); return; }
+  const passengers = [];
+  for (let i = 1; i <= passengerCount; i++) {
+    passengers.push({
+      name: document.getElementById(`name${i}`).value,
+      age: document.getElementById(`age${i}`).value
+    });
+  }
+  const booking = {
+    passengerCount,
+    passengers,
+    travelDate: document.getElementById("start-date").value,
+    paymentMethod: method,
+    totalCost: totalEl.textContent
+  };
+  localStorage.setItem("bookingData", JSON.stringify(booking));
+  window.location.href = method + '.html';
+}
+
+window.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>

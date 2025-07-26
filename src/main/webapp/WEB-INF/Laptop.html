@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cart-popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    
+        .cart-popup img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    
+        .cart-popup.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <style>
+            .sign-up{
+                background: var(--salmon-pink);
+                padding: 8px 15px;
+                margin-top: 9px;
+                color: var(--white);
+                font-weight: var(--fs-9);
+                font-weight: var(--weight-500);
+                text-transform: uppercase;
+                -webkit-border-radius: var(--border-radius-md);
+                border-radius: var(--border-radius-md);
+                margin-bottom: 15px;
+                -webkit-transition: var(--transition-timing);
+                -o-transition: var(--transition-timing);
+                transition: var(--transition-timing);
+                font-size: 15px;
+            }
+            
+            .sign-up:hover {
+                background: var(--eerie-black);
+                color: var(--white);
+            }
+            </style>
+
+</head>
+<body>
+    <div id="sectionlaptop" name="laptop">
+        <div class="showcase">
+            <div class="product-minimal">
+
+                <div class="product-showcase">
+
+                    <h2 class="title">New Arrivals</h2>
+
+                    <div class="showcase-wrapper has-scrollbar">
+
+                        <div class="showcase-container">
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/a5/7f/79/a57f7940a24d9ddbbe2aa4e72f5c48f5.jpg" alt="relaxed short full sleeve t-shirt" width="70" class="showcase-img">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">HP</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹8,499.00</p>
+                                        <del>₹25,000.00</del>
+
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/4a/bb/86/4abb8659d4d951a6fefefe401a02aeb7.jpg" alt="girls pink embro design top" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">BenQ</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹10,998.00</p>
+                                        <del>₹17,990.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/78/bf/a8/78bfa893270a0b531705b1c56f25674d.jpg" alt="black floral wrap midi skirt" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">Apple</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹11,490.00</p>
+                                        <del>₹21,548.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/bc/ff/4e/bcff4e72b4dce6c7ff37bc91202b7e3c.jpg" alt="pure garment dyed cotton shirt" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">HP T630 </h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹10,299.00</p>
+                                        <del>₹13,487.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="showcase-container">
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/d0/70/07/d070075c1d5b8d094d43a36ea431d44c.jpg" alt="men yarn fleece full-zip jacket" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">FRONTECH 20 Inch HD LED</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹3,154.00</p>
+                                        <del>₹8,000.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/05/71/a1/0571a140c8f2c73d60ad88ffd4a2bbb4.jpg" alt="mens winter leathers jackets" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">ACER EK240Y </h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹6,900.00</p>
+                                        <del>₹8,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/ed/5b/d6/ed5bd6ef0e00fd1a80b251ca873b1368.jpg" alt="mens winter leathers jackets" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">DELL</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹11,999.00</p>
+                                        <del>₹18,678.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/20/4e/90/204e905bfc7f55c45f3a0eeddc2431c9.jpg" alt="better basics french terry sweatshorts" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">Samsung</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹7,599.00</p>
+                                        <del>₹16,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="product-showcase">
+
+                    <h2 class="title">Trending</h2>
+
+                    <div class="showcase-wrapper  has-scrollbar">
+
+                        <div class="showcase-container">
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/95/71/68/957168db506e299cd8e81417a3092632.jpg" alt="running & trekking shoes - white" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">MSI PRO</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">8,299.00</p>
+                                        <del>₹14,000.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/d1/d4/4b/d1d44b09df3315a484d4ea19258db637.jpg" alt="trekking & running shoes - black" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">ZEBRONICS </h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹6,999.00</p>
+                                        <del>₹14,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/84/c5/10/84c510259fe6c482fc5529e437e7c425.jpg" alt="womens party wear shoes" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">DELL OptiPlex </h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹10000.00</p>
+                                        <del>₹14,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/3d/9b/0f/3d9b0f2d08d5e5f9ce07f8f9b74eab2a.jpg" alt="sports claw women's shoes" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">ACER ASPIRE T</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹4,900.00</p>
+                                        <del>₹14,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="showcase-container">
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/2d/f6/70/2df6704e5f22d0b8af7c61da66843dce.jpg" alt="air tekking shoes - white" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">Envy Desktop TE01-2250xt</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹9,900.00</p>
+                                        <del>₹14,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/dd/72/4f/dd724f25b33d93cc0c5965739de3b5ea.jpg" alt="Boot With Suede Detail" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">Boot With Suede Detail</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹8,900.00</p>
+                                        <del>₹19,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/fc/a8/12/fca812ce7e55b67c958859434cfa9724.jpg" alt="men's leather formal wear shoes" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">Acer laptop</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹8,900.00</p>
+                                        <del>₹16,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/c4/7a/73/c47a735edcb5b935396c65ebe8f8816d.jpg" alt="casual men's brown shoes" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">Casual Men's Brown shoes</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹7,900.00</p>
+                                        <del>₹15,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="product-showcase">
+
+                    <h2 class="title">Top Rated</h2>
+
+                    <div class="showcase-wrapper  has-scrollbar">
+
+                        <div class="showcase-container">
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/24/ed/06/24ed0653717e4d7b82f2070e4855fdcd.jpg" alt="pocket watch leather pouch" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">Predator (by Acer)</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹8,900.00</p>
+                                        <del>₹9,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/fe/b6/38/feb638a8d5cd6baa81e2b5dad6020586.jpg" alt="silver deer heart necklace" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">Silver heart</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹3,900.00</p>
+                                        <del>₹9,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/fc/70/3b/fc703b72f2a1f27a87a6466617fa3f00.jpg" alt="titan 100 ml womens perfume" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">Legion (by Lenovo)</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹9,900.00</p>
+                                        <del>₹12,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/c6/5b/c2/c65bc29c3e3d927fa15e93209ee1a52d.jpg" alt="men's leather reversible belt" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">Tuff</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹4,900.00</p>
+                                        <del>₹7,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="showcase-container">
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="hhttps://i.pinimg.com/736x/de/8a/1f/de8a1ff6505fc5b42d9acff708484d57.jpg" alt="platinum zircon classic ring" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">Dell</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹9,900.00</p>
+                                        <del>₹9,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/b1/d3/a3/b1d3a300daeb02d7e4f428f92d58cdb7.jpg" alt="smart watche vital plus" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">Vaio (formerly by Sony)</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹6,900.00</p>
+                                        <del>₹8,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/d6/19/85/d61985c4d31ef6aa76655f17a047f245.jpg" alt="shampoo conditioner packs" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">LG (Gram series)</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹3,900.00</p>
+                                        <del>₹7,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                            <div class="showcase">
+
+                                <a href="#" class="showcase-img-box">
+                                    <img src="https://i.pinimg.com/474x/d4/57/ef/d457ef3f514c1c855ef439db14f5270c.jpg" alt="rose gold peacock earrings" class="showcase-img" width="70">
+                                </a>
+
+                                <div class="showcase-content">
+
+                                    <a href="#">
+                                        <h4 class="showcase-title">XPG (by Adata, for gaming laptops)</h4>
+                                    </a>
+
+                                    <a href="#" class="showcase-category">Laptop</a>
+
+                                    <div class="price-box">
+                                        <p class="price">₹4,900.00</p>
+                                        <del>₹8,900.00</del>
+                                    </div>
+                                    <button class="add-cart-btn">add to cart</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+    <script>
+        function updateCartCount() {
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+document.getElementById("cart-count").textContent = totalCount;
+}
+
+function addToCart(name, price, image) {
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Extract numeric value from price and ensure two decimal places
+let numericPrice = parseFloat(price.replace(/[^0-9.]/g, "")).toFixed(2);
+
+if (isNaN(numericPrice)) {
+    console.error("Invalid price value");
+    return;
+}
+
+numericPrice = Number(numericPrice); // Convert back to number
+
+let existingItem = cart.find(item => item.name === name);
+if (existingItem) {
+    existingItem.quantity += 1;
+} else {
+    cart.push({ name, price: numericPrice, image, quantity: 1 });
+}
+
+localStorage.setItem("cart", JSON.stringify(cart));
+updateCartCount(); // Update count after adding item
+}
+
+document.addEventListener("DOMContentLoaded", updateCartCount);
+</script>
+<script>
+    function showCartPopup(productImage, productName) {
+        const popup = document.createElement("div");
+        popup.classList.add("cart-popup", "show");
+        popup.innerHTML = `
+            <img src="${productImage}" alt="Item">
+            <p>${productName} added to cart!</p>
+        `;
+
+        document.body.appendChild(popup);
+
+        setTimeout(() => {
+            popup.classList.remove("show");
+            setTimeout(() => popup.remove(), 300); // Remove after fade-out
+        }, 2000); // Show for 2 seconds
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".add-cart-btn").forEach(button => {
+            button.addEventListener("click", (event) => {
+                const productContainer = event.target.closest(".showcase");
+                const productImage = productContainer.querySelector(".showcase-img").src;
+                const productName = productContainer.querySelector(".showcase-title").innerText;
+
+                showCartPopup(productImage, productName);
+            });
+        });
+    });
+</script>
+
+</script>
+<script src="script.js"></script>
+
+</body>
+</html>
