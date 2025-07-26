@@ -98,8 +98,19 @@ Built-in logic for menu navigation and state management
 Applied Git & GitHub for version control and collaboration
 
 
+## 👥 Contributors
+
+This project was developed collaboratively as part of an academic assignment.
+
+| Name              | GitHub Username         | Role                     |
+|-------------------|-------------------------|--------------------------|
+| Mahima Kumari     | [@Mahima274](https://github.com/Mahima274) | Lead Developer, File Handling, Core Logic |
+| Sowmya sree       | [@Friend1GitHub](#)     | Menu Flow, Ticket Class, Testing |
+| [Friend 2 Name]   | [@Friend2GitHub](#)     | Admin Logic, Input Handling, Documentation |
+
+
 👩‍💻 Author
-Mahima Kumari
+Akula Lila Mahima Kumari
 B.Tech - Computer Science & Engineering
 Passionate about solving real-world problems with clean and effective code.
 
